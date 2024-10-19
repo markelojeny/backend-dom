@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(helmet());
 
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3003 } = process.env;
 
 const allowedCors = [
     'http://localhost:3000',
