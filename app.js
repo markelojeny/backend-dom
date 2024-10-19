@@ -17,16 +17,37 @@ app.use(helmet());
 
 const { PORT = 3001 } = process.env;
 
+const allowedCors = [
+    'http://localhost:3000',
+    'https://centre2000-houses.ru',
+    'https://centre2000-houses.ru/',
+    'https://centre2000-houses.ru/semidvorie',
+    'https://centre2000-houses.ru/shablykino-village',
+    'http://centre2000-houses.ru',
+    'http://centre2000-houses.ru/',
+    'http://centre2000-houses.ru/semidvorie',
+    'http://centre2000-houses.ru/shablykino-village'
+];
+
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'http://localhost:3001',
-    'http://centre2000-houses.online',
-    'http://centre2000-houses.ru'
+    'https://centre2000-houses.ru',
+    'http://centre2000-houses.ru',
+    'http://centre2000-houses.ru/semidvorie',
+    'http://centre2000-houses.ru/shablykino-village'
   ],
   exposedHeaders: 'Access-Control-Allow-Origin',
   credentials: true,
 }));
+
+app.use(function(req, res, next) {
+  const { origin } = req.headers;
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  next();
+});
 
 app.use(router);
 
