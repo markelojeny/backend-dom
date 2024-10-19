@@ -34,6 +34,7 @@ app.use(cors({
     'http://localhost:3000',
     'https://centre2000-houses.ru',
     'http://centre2000-houses.ru',
+    'http://centre2000-houses.ru/',
     'http://centre2000-houses.ru/semidvorie',
     'http://centre2000-houses.ru/shablykino-village'
   ],
