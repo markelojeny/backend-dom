@@ -2,7 +2,9 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const router = require('express').Router();
+const handleErrors = require('./errors/errors');
 const { SendUsMail } = require('./nodemailer');
+const NotFoundError = require('./errors/NotFoundError');
 
 router.post('/', SendUsMail);
 router.use('*', (req, res, next) => {
@@ -65,6 +67,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(router);
+app.use(handleErrors);
 
 app.listen(PORT, () => {
 
